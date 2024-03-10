@@ -1,4 +1,4 @@
 from userInputHandler import generateTable
 
-generateTable("(p|~p)")
+generateTable("(((p>q)>(~q>~p))&((~q>~p)>(p>q))) ")
 

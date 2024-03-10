@@ -6,7 +6,8 @@ from colorama import Fore, Back, Style
 
 def generateTable(input):
     if not fc.wellFormed(input):
-        print("invalid input")
+        print(Fore.RED + "invalid input")
+        print(Fore.WHITE + "")
         return
     else:
 
@@ -16,5 +17,5 @@ def generateTable(input):
             print(Fore.WHITE + "")
             
         else:
-            print(Fore.RED + "THE INPUT IS NOT A TAUTOLOGY")
+            print(Fore.YELLOW + "THE INPUT IS NOT A TAUTOLOGY")
             print(Fore.WHITE + "")
