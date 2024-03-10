@@ -1,4 +1,4 @@
 from userInputHandler import generateTable
 
-generateTable("~p")
+generateTable("p")
 

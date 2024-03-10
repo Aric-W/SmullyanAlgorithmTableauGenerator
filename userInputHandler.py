@@ -11,7 +11,7 @@ def generateTable(input):
         print(Fore.WHITE + "")
         return
     else:
-        if(len(input) < 3):
+        if(len(input) == 2):
             print("ASSUME" + " " "~(" + input + ")")
             print("p BY ASSUMPTION")
             print(Fore.YELLOW + "THE INPUT IS NOT A TAUTOLOGY")
