@@ -48,18 +48,19 @@ def checkConjugate(atom,listOfFacts):
     return False
 
 def driver(formula, listOfFacts,upperLevel,listOfAtoms):
-    develop(formula,listOfFacts,upperLevel,listOfAtoms)
+    develop(formula,listOfFacts,upperLevel,listOfAtoms,"F")
     
     contradiction = True
     for i in listOfAtoms:
         c = 0
         for j in listOfAtoms:
-            if (i == "~" + j) or (j == "~" + i):
+            if (((i == "~" + j) or (j == "~" + i)) and (i[len(i)-1] != "O")):
                 contradiction = contradiction and True
                 break
             c = c + 1
         if c == len(listOfAtoms):
             contradiction = contradiction and False
+            break
     return contradiction
 
 

@@ -15,7 +15,7 @@ def generateTable(input):
             print("ASSUME" + " " "~(" + input + ")")
         else:
             print("ASSUME" + " " + "~" + input)
-        if(dt.driver("~" + input,[],"",[],"F")):
+        if(dt.driver("~" + input,[],"",[])):
             print(Fore.GREEN + "THE INPUT IS A TAUTOLOGY")
             print(Fore.WHITE + "")
             
