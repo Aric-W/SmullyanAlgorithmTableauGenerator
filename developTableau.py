@@ -1,13 +1,13 @@
 from inferenceGenerator import inGen
 
-def develop(formula, listOfFacts,upperLevel,listOfAtoms):
+def develop(formula, listOfFacts,upperLevel,listOfAtoms,qualifier):
     
     if len(upperLevel) == 0:
         because = " BY ASSUMPTION "
     else:
         because = " BECAUSE "
     if len(formula) <= 2:
-        listOfAtoms.append(formula)
+        listOfAtoms.append(formula + qualifier)
         return
         
     s1,s2,alpha = inGen(formula)
@@ -17,8 +17,8 @@ def develop(formula, listOfFacts,upperLevel,listOfAtoms):
     if alpha:
         print(s1 + because + upperLevel)
         print(s2 + because + upperLevel)
-        develop(s1,listOfFacts,s1,listOfAtoms)
-        develop(s2,listOfFacts,s2,listOfAtoms)
+        develop(s1,listOfFacts,s1,listOfAtoms,"F")
+        develop(s2,listOfFacts,s2,listOfAtoms,"F")
         
 
 
@@ -28,13 +28,13 @@ def develop(formula, listOfFacts,upperLevel,listOfAtoms):
 
         
         copy1 = listOfFacts.copy()
-        develop(s1,copy1,s1,listOfAtoms)
+        develop(s1,copy1,s1,listOfAtoms,"O")
         del copy1
         
             
 
         copy2 = listOfFacts.copy()
-        develop(s2,copy2,s2,listOfAtoms)
+        develop(s2,copy2,s2,listOfAtoms,"O")
         del copy2
 
 
