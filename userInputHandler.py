@@ -11,11 +11,18 @@ def generateTable(input):
         print(Fore.WHITE + "")
         return
     else:
+        if(len(input) < 3):
+            print("ASSUME" + " " "~(" + input + ")")
+            print("p BY ASSUMPTION")
+            print(Fore.YELLOW + "THE INPUT IS NOT A TAUTOLOGY")
+            print(Fore.WHITE + "")
+            return
         if input[0] == "~":
             print("ASSUME" + " " "~(" + input + ")")
         else:
             print("ASSUME" + " " + "~" + input)
-        if(dt.driver("~" + input,[],"",[])):
+            
+        if(dt.driver(input,[],"",[])):
             print(Fore.GREEN + "THE INPUT IS A TAUTOLOGY")
             print(Fore.WHITE + "")
             
