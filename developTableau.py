@@ -54,7 +54,7 @@ def driver(formula, listOfFacts,upperLevel,listOfAtoms):
     for i in listOfAtoms:
         c = 0
         for j in listOfAtoms:
-            if (((i == "~" + j) or (j == "~" + i)) and (i[len(i)-1] != "O")):
+            if ((((i[0] == "~") and (i[1] == j[0])) or((j[0] == "~") and (j[1] == i[0]))) and ((j[len(j)-1] != i[len(i)-1]) or ((j[len(j)-1] == i[len(i)-1]) and j[len(j)-1] == "F"))):
                 contradiction = contradiction and True
                 break
             c = c + 1
