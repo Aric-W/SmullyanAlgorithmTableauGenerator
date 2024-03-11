@@ -4,4 +4,6 @@ generateTable("(p>q)")
 generateTable("(q>(p>q))")
 generateTable("((p>q)>(~q>~p))")
 generateTable("(p&~p)")
+generateTable("(p|~p)")
+generateTable("~~PPPSDFASDF##")
 
