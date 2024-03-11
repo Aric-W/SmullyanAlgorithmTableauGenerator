@@ -56,7 +56,31 @@ def driver(formula, listOfFacts,upperLevel,listOfAtoms,TT):
     develop(formula,listOfFacts,upperLevel,listOfAtoms,"F",TT)
 
     branches = []
-    print(TT.goDownTheBranches(branches))
+    branches = TT.goDownTheBranches(branches)
+
+    counter = 0
+    breakerFlag = False
+    for i in branches:
+
+        for j in i:
+            if(breakerFlag):
+                break
+            for k in i:
+                if ((j == "~" + k) or (k == "~" + j)) and j != "":
+                    breakerFlag = True
+                    break
+        if(breakerFlag):
+            break
+        counter = counter + 1
+
+    if(counter < len(branches)):
+        return True
+    else:
+        return False
+    
+
+        
+                
     
     '''contradiction = True
     for i in listOfAtoms:

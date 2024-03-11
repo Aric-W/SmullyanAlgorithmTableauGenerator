@@ -33,4 +33,3 @@ def generateTable(input):
             else:
                 print(Fore.YELLOW + "THE INPUT IS NOT A TAUTOLOGY")
                 print(Fore.WHITE + "")
-    time.sleep(3)
