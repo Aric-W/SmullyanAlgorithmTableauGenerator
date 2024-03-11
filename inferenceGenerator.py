@@ -3,7 +3,7 @@ def inGen(formula):
     subForm1, subForm2,connective, negated = split(formula)
     isItAlpha = True
     if(negated):
-        if connective == "|":
+        if connective == "V":
             if subForm1[0] == "~":
                 inference1 = subForm1[1:len(subForm1)]
             else:
@@ -18,7 +18,7 @@ def inGen(formula):
                 inference2 = subForm2[1:len(subForm2)]
             else:
                 inference2 = "~" + subForm2
-        elif connective == "&":
+        elif connective == "^":
             if(subForm1[0] == "~"):
                 inference1 = subForm1[1:len(subForm1)]
             else:
@@ -37,11 +37,11 @@ def inGen(formula):
                 inference1 = "~" + subForm1
             inference2 = subForm2
             isItAlpha = False
-        elif connective == "|":
+        elif connective == "V":
             inference1 = subForm1
             inference2 = subForm2
             isItAlpha = False
-        elif connective == "&":
+        elif connective == "^":
             inference1 = subForm1
             inference2 = subForm2
     #if isItAlpha is false we branch

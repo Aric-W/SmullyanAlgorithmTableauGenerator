@@ -37,7 +37,7 @@ def getSubformulas(string):
             layer = layer + 1
         if c == ")":
             layer = layer - 1 
-        if (c == "|" or c == "&" or c == ">") and layer == 1:
+        if (c == "V" or c == "^" or c == ">") and layer == 1:
             buildsubformula2 = True
             buildSubformula1 = False
             highestLevelConnective = c
