@@ -1,13 +1,18 @@
 from inferenceGenerator import inGen
 
-def develop(formula, listOfFacts,upperLevel,listOfAtoms,qualifier):
-    
+
+def develop(formula, listOfFacts,upperLevel,listOfAtoms,qualifier,TT):
     if len(upperLevel) == 0:
         because = " BY ASSUMPTION "
     else:
         because = " BECAUSE "
     if len(formula) <= 2:
-        listOfAtoms.append(formula + qualifier)
+        if(qualifier == "O"):
+            TT.branch(formula)
+        else:
+            TT.infer(formula)
+        #listOfAtoms.append(formula + qualifier)
+        listOfAtoms.append(formula)
         return
         
     s1,s2,alpha = inGen(formula)
@@ -17,8 +22,8 @@ def develop(formula, listOfFacts,upperLevel,listOfAtoms,qualifier):
     if alpha:
         print(s1 + because + upperLevel)
         print(s2 + because + upperLevel)
-        develop(s1,listOfFacts,s1,listOfAtoms,"F")
-        develop(s2,listOfFacts,s2,listOfAtoms,"F")
+        develop(s1,listOfFacts,s1,listOfAtoms,"F",TT)
+        develop(s2,listOfFacts,s2,listOfAtoms,"F",TT)
         
 
 
@@ -28,18 +33,18 @@ def develop(formula, listOfFacts,upperLevel,listOfAtoms,qualifier):
 
         
         copy1 = listOfFacts.copy()
-        develop(s1,copy1,s1,listOfAtoms,"O")
+        develop(s1,copy1,s1,listOfAtoms,"O",TT)
         del copy1
         
             
 
         copy2 = listOfFacts.copy()
-        develop(s2,copy2,s2,listOfAtoms,"O")
+        develop(s2,copy2,s2,listOfAtoms,"O",TT)
         del copy2
 
 
     
-
+#I'm not using checkConjugate any more?
 def checkConjugate(atom,listOfFacts):
     for c in listOfFacts:
         if (atom[0] == "~" and atom == "~" + c) or c == "~" + atom:
@@ -47,10 +52,13 @@ def checkConjugate(atom,listOfFacts):
         
     return False
 
-def driver(formula, listOfFacts,upperLevel,listOfAtoms):
-    develop(formula,listOfFacts,upperLevel,listOfAtoms,"F")
+def driver(formula, listOfFacts,upperLevel,listOfAtoms,TT):
+    develop(formula,listOfFacts,upperLevel,listOfAtoms,"F",TT)
+
+    branches = []
+    print(TT.goDownTheBranches(branches))
     
-    contradiction = True
+    '''contradiction = True
     for i in listOfAtoms:
         c = 0
         for j in listOfAtoms:
@@ -61,7 +69,7 @@ def driver(formula, listOfFacts,upperLevel,listOfAtoms):
         if c == len(listOfAtoms):
             contradiction = contradiction and False
             break
-    return contradiction
+    return contradiction'''
 
 
 
