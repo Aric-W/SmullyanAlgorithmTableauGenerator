@@ -62,8 +62,6 @@ def driver(formula, listOfFacts,upperLevel,listOfAtoms,TT):
     breakerFlag = False
     openBranches = 0
     for i in branches:
-        if(len(i) == 1 and i[0] == ""):
-            continue
         breakerFlag = False
         for j in i:
             if(j == ""):

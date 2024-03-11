@@ -26,10 +26,9 @@ class TableauTree:
 
 
     def goDownTheBranches(self,branches):
-        branch = []
-        for i in self.directInferences:
-            branch.append(i)
-        branches.append(branch)
+        branch = self.directInferences
+        if not (len(branch) == 1 and branch[0] == ""):
+            branches.append(branch)
         if(self.left != None):
             branch = branch + self.left.goDownTheBranches(branches)
         if(self.right != None):
