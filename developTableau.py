@@ -58,27 +58,29 @@ def driver(formula, listOfFacts,upperLevel,listOfAtoms,TT):
     branches = []
     branches = TT.goDownTheBranches(branches)
 
-    counter = 0
-    breakerFlag = False
-    for i in branches:
 
+    breakerFlag = False
+    openBranches = 0
+    for i in branches:
+        if(len(i) == 1 and i[0] == ""):
+            continue
+        breakerFlag = False
         for j in i:
+            if(j == ""):
+                continue
             if(breakerFlag):
                 break
             for k in i:
-                if ((j == "~" + k) or (k == "~" + j)) and j != "":
+                if ((j == "~" + k) or (k == "~" + j)):                  
                     breakerFlag = True
                     break
-        if(breakerFlag):
-            break
-        counter = counter + 1
+        if(not breakerFlag):
+            openBranches = 1 + openBranches
 
-    if(counter < len(branches)):
-        return True
-    else:
+    if(openBranches > 0):
         return False
-    
-
+    else: 
+        return True
         
                 
     

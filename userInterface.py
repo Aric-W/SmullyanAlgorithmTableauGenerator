@@ -6,4 +6,5 @@ generateTable("((p>q)>(~q>~p))")
 generateTable("(p&~p)")
 generateTable("(p|~p)")
 generateTable("~~PPPSDFASDF##")
+generateTable("((~q>~p)>(p>q))")
 
