@@ -32,6 +32,6 @@ class TableauTree:
         branches.append(branch)
         if(self.left != None):
             branch = branch + self.left.goDownTheBranches(branches)
-        elif(self.right != None):
-            branch = branch + self.right.goDowntheBranches(branches)
+        if(self.right != None):
+            branch = branch + self.right.goDownTheBranches(branches)
         return branches
