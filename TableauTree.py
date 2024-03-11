@@ -25,12 +25,16 @@ class TableauTree:
             self.right.infer(inp)
 
 
-    def goDownTheBranches(self,branches):
-        branch = self.directInferences
-        if not (len(branch) == 1 and branch[0] == ""):
+    def goDownTheBranches(self,branches,branch):
+        branch = branch + self.directInferences
+        if(self.left == None):
             branches.append(branch)
-        if(self.left != None):
-            branch = branch + self.left.goDownTheBranches(branches)
-        if(self.right != None):
-            branch = branch + self.right.goDownTheBranches(branches)
-        return branches
+            return
+        else:
+            self.left.goDownTheBranches(branches,branch)
+        if self.right == None:
+            branches.append(branch)
+            return
+        else:
+            self.right.goDownTheBranches(branches,branch)
+        

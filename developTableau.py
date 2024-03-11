@@ -56,7 +56,8 @@ def driver(formula, listOfFacts,upperLevel,listOfAtoms,TT):
     develop(formula,listOfFacts,upperLevel,listOfAtoms,"F",TT)
 
     branches = []
-    branches = TT.goDownTheBranches(branches)
+    branch = []
+    TT.goDownTheBranches(branches,branch)
 
 
     breakerFlag = False
