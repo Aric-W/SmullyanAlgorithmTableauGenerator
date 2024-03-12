@@ -11,24 +11,26 @@ class TableauTree:
         self.directInferences.append(inp)"""
     
     def branch(self,l):
-        #if there's no left branch, make one
-        if(self.left == None):
+        if(self.left != None and self.right != None):
+            self.left.branch(l)
+            self.right.branch(l)
+        elif(self.left == None):
             self.left = TableauTree()
+
             self.left.directInferences.append(l)
             return
-        #if there's no right branch, make one
-        elif(self.right == None):
+        else:
             self.right = TableauTree()
             self.right.directInferences.append(l)
             return
-        #branches are made in pairs
-        else:
-            self.branch(l)
+        
+
+        
     
 
     def infer(self, inp):
         #if there are no subtrees, then put on inferences
-        if(self.left == None and self.right == None):
+        if(self.left == None or self.right == None):
             self.directInferences.append(inp)
         #go down the left and then go down the right
         else:
