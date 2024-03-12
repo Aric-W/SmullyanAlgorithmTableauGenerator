@@ -2,18 +2,23 @@ from inferenceGenerator import inGen
 
 def reason(formula,TT,branchOrInfer):
     #if there is nothing to infer from then we are making an assumption
+    if(branchOrInfer == "I"):
+        TT.infer(formula)
+    else:
+        TT.branch(formula) 
     if len(formula) == 0:
         because = " BY ASSUMPTION "
     else:
         because = " BECAUSE "
     if len(formula) <= 2:
-        if(branchOrInfer == "I"):
+        """if(branchOrInfer == "I"):
             TT.infer(formula)
         else:
-            TT.branch(formula) 
+            TT.branch(formula) """
         return
 
     s1,s2,alpha = inGen(formula)
+
 
     if alpha:
         print(s1 + because + formula)
@@ -37,11 +42,16 @@ def contradictionChecker(TT):
 
     breakerFlag = False
     openBranches = 0
+    #iterate through the list of branches
+    #when a contradiction is found on a branch,
+    #that is when a variable is found in the same branch with its conjugate
+    #for example, if p is found with ~p
+    #break out of the nested for loop that takes an element of the 
+    #branch and tries to find it's conjugate
+    #and move on to the next branch
     for i in branches:
         breakerFlag = False
         for j in i:
-            if(j == ""):
-                continue
             if(breakerFlag):
                 break
             for k in i:
