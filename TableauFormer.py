@@ -1,20 +1,22 @@
 from inferenceGenerator import inGen
 
-def reason(formula,TT,branchOrInfer):
+def reason(formula,TT,branchOrInfer,efficiencyTableau):
     #if there is nothing to infer from then we are making an assumption
-    if(branchOrInfer == "I"):
-        TT.infer(formula)
-    else:
-        TT.branch(formula) 
+    if(not efficiencyTableau):
+        if(branchOrInfer == "I"):
+            TT.infer(formula)
+        else:
+            TT.branch(formula) 
     if len(formula) == 0:
         because = " BY ASSUMPTION "
     else:
         because = " BECAUSE "
     if len(formula) <= 2:
-        """if(branchOrInfer == "I"):
-            TT.infer(formula)
-        else:
-            TT.branch(formula) """
+        if(efficiencyTableau):
+            if(branchOrInfer == "I"):
+                TT.infer(formula)
+            else:
+                TT.branch(formula) 
         return
 
     s1,s2,alpha = inGen(formula)
@@ -23,15 +25,15 @@ def reason(formula,TT,branchOrInfer):
     if alpha:
         print(s1 + because + formula)
         print(s2 + because + formula)
-        reason(s1,TT,"I")
-        reason(s2,TT,"I")
+        reason(s1,TT,"I",efficiencyTableau)
+        reason(s2,TT,"I",efficiencyTableau)
         
     else:
         print("EITHER " + s1 + " OR " + s2 + because + formula)
 
-        reason(s1,TT,"B")
+        reason(s1,TT,"B",efficiencyTableau)
         
-        reason(s2,TT,"B")
+        reason(s2,TT,"B",efficiencyTableau)
 
 
 def contradictionChecker(TT):
@@ -66,7 +68,7 @@ def contradictionChecker(TT):
     else: 
         return True
     
-def reasoningDriver(formula,TT):
-    reason(formula,TT,"I")
+def reasoningDriver(formula,TT,efficiencyTableau):
+    reason(formula,TT,"I",efficiencyTableau)
 
     return contradictionChecker(TT)

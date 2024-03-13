@@ -5,6 +5,7 @@ from TableauTree import TableauTree
 from TableauFormer import reasoningDriver
 
 def generateTable(input):
+    efficiencyTableau = False
     if not fc.wellFormed(input):
         print(Fore.RED + input + " IS NOT VALID INPUT")
         print(Fore.WHITE + "")
@@ -24,7 +25,7 @@ def generateTable(input):
                 print(Fore.WHITE + "")
         else:
             print("ASSUME" + " " + "~" + input)
-            if(reasoningDriver("~" + input,TT)):
+            if(reasoningDriver("~" + input,TT,efficiencyTableau)):
                 print(Fore.GREEN + input + " IS A TAUTOLOGY")
                 print(Fore.WHITE + "")
 

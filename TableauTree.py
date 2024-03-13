@@ -7,8 +7,6 @@ class TableauTree:
     def __init__(self):
         #each node has it's own list
         self.directInferences = []
-        """#put some initial thing in the directInferences list
-        self.directInferences.append(inp)"""
     
     def branch(self,l):
         if(self.left != None and self.right != None):
